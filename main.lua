@@ -6,10 +6,14 @@ function love.load()
   love.graphics.setDefaultFilter("nearest", "nearest")
   pointer.load()
   
+  world = love.physics.newWorld(0, 9.81*64, true)
+  rectangleSystem.world = world
+  
   rectangleSystem.add(20, 20, 200, 100)
 end
 
-function love.update()
+function love.update(dt)
+  world:update(dt)
   pointer.update()
 end
 
