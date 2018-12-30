@@ -5,8 +5,10 @@ local rectangleSystem = {
   world = nil
 }
 
-function rectangleSystem.add(x, y, width, height)
-  table.insert(rectangleSystem.rectangles, Rectangle:create(x, y, width, height, rectangleSystem.world))
+function rectangleSystem.add(width, height)
+  local newRect = Rectangle:create(50, 300, width, height, rectangleSystem.world)
+  newRect.body:applyLinearImpulse(1000, -1000)
+  table.insert(rectangleSystem.rectangles, newRect)
 end
 
 function rectangleSystem.draw()

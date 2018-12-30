@@ -2,14 +2,19 @@ local pointer = require("pointer")
 local rectangleSystem = require("systems/rectangle-system")
 
 function love.load()
+  -- Window initialization
   love.window.setMode(600, 400, { vsync=false, fullscreen=false })
+  love.window.setTitle("love2d-test")
   love.graphics.setDefaultFilter("nearest", "nearest")
+
+  -- Create physics world
+  world = love.physics.newWorld(0, 9.81*64, true)
+
+  -- Load pointer
   pointer.load()
   
-  world = love.physics.newWorld(0, 9.81*64, true)
+  -- Load systems
   rectangleSystem.world = world
-  
-  rectangleSystem.add(20, 20, 200, 100)
 end
 
 function love.update(dt)
@@ -24,8 +29,10 @@ end
 
 function love.mousepressed(x, y, button, istouch)
   if (button == 1) then
+    -- Left click
     rectangleSystem.hit(x, y)
   else
-    rectangleSystem.add(x - 25, y - 25, 50, 50)
+    -- Right click
+    rectangleSystem.add(50, 50)
   end
 end

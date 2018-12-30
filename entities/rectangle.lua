@@ -17,7 +17,10 @@ function Rectangle:draw()
 end
 
 function Rectangle:testPoint(x, y)
-  return self.shape:testPoint(self.body:getX(), self.body:getY(), self.body:getAngle(), x, y)
+  return self.shape:testPoint(
+    self.body:getX(),
+    self.body:getY(),
+    self.body:getAngle(), x, y)
 end
 
 return Rectangle
